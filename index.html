@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Style Bud — сучасне будівництво</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap');
+
+    * {box-sizing:border-box;margin:0;padding:0;}
+    body {
+      font-family:'Cormorant Garamond', serif;
+      background: #f5f5f5;
+      color:#2b2b2b;
+      scroll-behavior:smooth;
+    }
+
+    header {
+      text-align:center;
+      padding:70px 20px 30px;
+      animation: fadeIn 1.5s ease-out;
+    }
+    header img {width:120px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;}
+    header h1 {letter-spacing:2px;font-size:36px;}
+    header p {font-size:18px;color:#555;}
+
+    nav {
+      position:sticky;
+      top:0;
+      background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(6px);
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      padding:12px;
+      font-weight:600;
+      border-bottom:1px solid #ddd;
+      z-index:1000;
+    }
+    nav a {
+      color:#2b2b2b;
+      text-decoration:none;
+      transition: color 0.3s;
+    }
+    nav a:hover {color:#555;}
+
+    section {
+      max-width:1100px;
+      margin:80px auto;
+      padding:0 20px;
+      opacity:0;
+      transform:translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    section.visible {opacity:1;transform:translateY(0);}
+
+    h1,h2 {text-align:center;margin-bottom:20px;}
+    p {line-height:1.6;}
+
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:10px;
+      margin-top:20px;
+    }
+    .gallery img {
+      width:100%;
+      height:250px;
+      border-radius:6px;
+      object-fit:cover;
+      transition:transform 0.5s, box-shadow 0.5s;
+      background:#ddd;
+      cursor:pointer;
+    }
+    .gallery img:hover {
+      transform:scale(1.03);
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    /* Лайтбокс */
+    .lightbox {
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.95);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:10000;
+      opacity:0;
+      transition:opacity 0.3s ease-out;
+    }
+    
+    .lightbox.active {
+      display:flex;
+      opacity:1;
+    }
+    
+    .lightbox-content {
+      position:relative;
+      max-width:90%;
+      max-height:90%;
+      animation:lightboxZoom 0.3s ease-out;
+    }
+    
+    .lightbox img {
+      max-width:100%;
+      max-height:90vh;
+      object-fit:contain;
+      border-radius:4px;
+    }
+    
+    .lightbox-close {
+      position:absolute;
+      top:-40px;
+      right:0;
+      background:none;
+      border:none;
+      color:#fff;
+      font-size:36px;
+      cursor:pointer;
+      padding:5px 15px;
+      transition:transform 0.2s;
+    }
+    
+    .lightbox-close:hover {
+      transform:scale(1.2);
+    }
+    
+    .lightbox-controls {
+      position:fixed;
+      bottom:40px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:15px;
+      z-index:10001;
+    }
+    
+    .lightbox-nav {
+      background:rgba(255,255,255,0.2);
+      border:none;
+      color:#fff;
+      font-size:16px;
+      cursor:pointer;
+      padding:12px 20px;
+      transition:all 0.3s ease;
+      border-radius:6px;
+      font-weight:600;
+      backdrop-filter:blur(10px);
+    }
+    
+    .lightbox-nav:hover {
+      background:rgba(255,255,255,0.35);
+      transform:translateY(-3px);
+    }
+    
+    @keyframes lightboxZoom {
+      from {transform:scale(0.8);opacity:0;}
+      to {transform:scale(1);opacity:1;}
+    }
+
+    .calculator {
+      background:rgba(255,255,255,0.95);
+      border-radius:12px;
+      padding:30px;
+      max-width:500px;
+      margin:40px auto;
+      box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display:block;
+      margin:15px 0 5px;
+      font-size:16px;
+      font-weight:600;
+    }
+    select,input {
+      display:block;
+      width:100%;
+      margin:5px 0 10px;
+      padding:10px;
+      font-size:16px;
+      border:1px solid #ddd;
+      border-radius:4px;
+      font-family:'Cormorant Garamond', serif;
+    }
+    button {
+      width:100%;
+      padding:12px;
+      margin-top:20px;
+      background:#2b2b2b;
+      color:#fff;
+      border:none;
+      cursor:pointer;
+      font-size:16px;
+      border-radius:4px;
+      transition: background 0.3s;
+      font-family:'Cormorant Garamond', serif;
+    }
+    button:hover {background:#444;}
+    
+    #result {
+      text-align:center;
+      margin-top:20px;
+      color:#2b2b2b;
+      min-height:30px;
+    }
+    
+    footer {
+      text-align:center;
+      padding:40px 20px;
+      background:rgba(255,255,255,0.95);
+      font-size:14px;
+      margin-top:80px;
+      border-top:1px solid #ddd;
+    }
+    
+    footer a {
+      color:#2b2b2b;
+      text-decoration:none;
+    }
+    footer a:hover {
+      text-decoration:underline;
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0;transform:translateY(-30px);}
+      to {opacity:1;transform:translateY(0);}
+    }
+    
+    /* Прелоадер */
+    .preloader {
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:#ffffff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+      opacity:1;
+      transition:opacity 0.8s ease-out, visibility 0.8s ease-out;
+    }
+    
+    .preloader.hidden {
+      opacity:0;
+      visibility:hidden;
+    }
+    
+    .preloader-content {
+      text-align:center;
+      animation:preloaderFadeIn 1.2s ease-out;
+    }
+    
+    .preloader-logo {
+      width:800px;
+      height:800px;
+      object-fit:contain;
+      animation:logoFloat 2.5s ease-in-out infinite;
+      mix-blend-mode:multiply;
+      opacity:0.95;
+    }
+    
+    @keyframes preloaderFadeIn {
+      from {opacity:0;transform:scale(0.9);}
+      to {opacity:1;transform:scale(1);}
+    }
+    
+    @keyframes logoFloat {
+      0%, 100% {transform:translateY(0px) scale(1);}
+      50% {transform:translateY(-20px) scale(1.05);}
+    }
+    
+    body.loading {
+      overflow:hidden;
+    }
+    
+    @media (max-width: 768px) {
+      header h1 {font-size:28px;}
+      nav {gap:15px;font-size:14px;}
+      section {margin:40px auto;}
+      .gallery {grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
+      .preloader-logo {width:400px;height:400px;}
+    }
+  </style>
+</head>
+<body class="loading">
+
+  <!-- Прелоадер -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <img src="logo-stylebud.png" alt="Style Bud" class="preloader-logo" onerror="this.style.display='none'" />
+    </div>
+  </div>
+
+  <header>
+    <img src="logo-stylebud.png" alt="Style Bud logo" onerror="this.style.display='none'" />
+    <h1>STYLE BUD</h1>
+    <p>Архітектура. Якість. Надійність.</p>
+  </header>
+
+  <nav>
+    <a href="#home">Головна</a>
+    <a href="#about">Про нас</a>
+    <a href="#houses">Наші будинки</a>
+    <a href="#plans">Планування</a>
+    <a href="#calc">Калькулятор</a>
+    <a href="#contact">Контакти</a>
+  </nav>
+
+  <section id="home" class="visible">
+    <h2>Сучасне будівництво під ключ</h2>
+    <p style="text-align:center;max-width:800px;margin:auto">
+      Ми створюємо будинки, які поєднують архітектурну естетику, енергоефективність і комфорт.
+      Усе — під ключ, без зайвої бюрократії.
+    </p>
+  </section>
+
+  <section id="about">
+    <h2>Про нас</h2>
+    <p style="max-width:800px;margin:auto">
+      Style Bud — компанія, що створює сучасні, надійні та функціональні будинки, дотримуючись будівельних норм України та ЄС.
+      Ми не просто будуємо — ми створюємо простір, де якість відчувається в кожній деталі.
+    </p>
+  </section>
+
+  <section id="houses">
+    <h2>Наші будинки</h2>
+    <div class="gallery">
+      <img src="house1.jpg" alt="Будинок 1" />
+      <img src="house2.jpg" alt="Будинок 2" />
+      <img src="house3.jpg" alt="Будинок 3" />
+      <img src="house4.jpg" alt="Будинок 4" />
+      <img src="house5.jpg" alt="Будинок 5" />
+      <img src="house6.jpeg" alt="Будинок 6" />
+      <img src="house7.jpeg" alt="Будинок 7" />
+      <img src="house8.jpeg" alt="Будинок 8" />
+    </div>
+    <p style="text-align:center;margin-top:20px;max-width:800px;margin-left:auto;margin-right:auto">
+      Ми виконуємо будь-які завдання згідно з нормами забудови.  
+      Є безліч варіантів планувань — від 90 м² до 200 м².
+    </p>
+  </section>
+
+  <section id="plans">
+    <h2>Планування</h2>
+    <p style="max-width:800px;margin:auto;text-align:center">
+      Пропонуємо типові та індивідуальні планування для будь-яких потреб.
+      Розробимо саме те, що відповідає вашому способу життя — компактно, практично або розкішно.
+    </p>
+    <div class="gallery" style="margin-top:20px;">
+      <img src="plan1.png" alt="Планування 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22250%22 height=%22250%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EПланування 1%3C/text%3E%3C/svg%3E'" />
+      <img src="plan2.png" alt="Планування 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22250%22 height=%22250%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EПланування 2%3C/text%3E%3C/svg%3E'" />
+      <img src="plan3.png" alt="Планування 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22250%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22250%22 height=%22250%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EПланування 3%3C/text%3E%3C/svg%3E'" />
+    </div>
+  </section>
+
+  <section id="calc">
+    <h2>Калькулятор вартості</h2>
+    <div class="calculator">
+      <label for="area">Площа будинку (м²):</label>
+      <input type="number" id="area" placeholder="Введіть площу..." min="1" step="1" />
+
+      <label for="type">Тип будинку:</label>
+      <select id="type">
+        <option value="2000">Комфорт — $2000/м²</option>
+        <option value="2500">Модерн — $2500/м²</option>
+        <option value="3000">Люкс — $3000/м²</option>
+      </select>
+
+      <button type="button" onclick="calcPrice()">Розрахувати</button>
+      <div id="result"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Контакти</h2>
+    <p style="text-align:center;">
+      📞 <a href="tel:+380958221664">+38 095 822 1664</a><br/>
+      ✉️ <a href="mailto:info@stylebud.com.ua">info@stylebud.com.ua</a>
+    </p>
+  </section>
+
+  <!-- Лайтбокс -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <img id="lightbox-img" src="" alt="Перегляд зображення" />
+    </div>
+    <div class="lightbox-controls">
+      <button class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">&#10094; Назад</button>
+      <button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">Вперед &#10095;</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Style Bud. Усі права захищені.</p>
+  </footer>
+
+  <script>
+    // Прелоадер
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      const body = document.body;
+      
+      // Показуємо прелоадер мінімум 2.5 секунди
+      setTimeout(function() {
+        preloader.classList.add('hidden');
+        body.classList.remove('loading');
+      }, 2500);
+    });
+    
+    // Плавна поява секцій при скролі
+    const sections = document.querySelectorAll('section');
+    
+    function checkSections() {
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          sec.classList.add('visible');
+        }
+      });
+    }
+    
+    // Перевірка при завантаженні
+    window.addEventListener('load', checkSections);
+    // Перевірка при скролі
+    window.addEventListener('scroll', checkSections);
+
+    function calcPrice() {
+      const areaInput = document.getElementById('area');
+      const typeSelect = document.getElementById('type');
+      const resultDiv = document.getElementById('result');
+      
+      const area = parseFloat(areaInput.value);
+      const price = parseFloat(typeSelect.value);
+      
+      if (!area || area <= 0) {
+        resultDiv.innerHTML = '<p style="color:#d32f2f;">Введіть коректну площу</p>';
+        return;
+      }
+      
+      const total = area * price;
+      resultDiv.innerHTML = `<p style="color:#2b2b2b;font-size:18px;font-weight:600;">Орієнтовна вартість: $${total.toLocaleString('en-US')}</p>`;
+    }
+    
+    // Дозволити розрахунок клавішею Enter
+    document.getElementById('area').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        calcPrice();
+      }
+    });
+    
+    // Лайтбокс для зображень
+    let currentImageIndex = 0;
+    let galleryImages = [];
+    
+    function initLightbox() {
+      // Збираємо всі зображення з галерей
+      const galleries = document.querySelectorAll('.gallery');
+      galleries.forEach(gallery => {
+        const images = gallery.querySelectorAll('img');
+        images.forEach((img, index) => {
+          img.addEventListener('click', function() {
+            galleryImages = Array.from(gallery.querySelectorAll('img'));
+            currentImageIndex = Array.from(galleryImages).indexOf(img);
+            openLightbox(img.src, img.alt);
+          });
+        });
+      });
+    }
+    
+    function openLightbox(src, alt) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    function changeLightboxImage(direction) {
+      if (galleryImages.length === 0) return;
+      
+      currentImageIndex += direction;
+      
+      // Циклічне перемикання
+      if (currentImageIndex < 0) {
+        currentImageIndex = galleryImages.length - 1;
+      }
+      if (currentImageIndex >= galleryImages.length) {
+        currentImageIndex = 0;
+      }
+      
+      const img = galleryImages[currentImageIndex];
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+    }
+    
+    // Закриття лайтбоксу при кліку на фон
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLightbox();
+      }
+    });
+    
+    // Закриття лайтбоксу клавішею Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+      if (e.key === 'ArrowLeft') {
+        changeLightboxImage(-1);
+      }
+      if (e.key === 'ArrowRight') {
+        changeLightboxImage(1);
+      }
+    });
+    
+    // Ініціалізація лайтбоксу
+    window.addEventListener('load', initLightbox);
+  </script>
+
+</body>
+</html>
