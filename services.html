@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Послуги — Style</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap');
+
+    * {box-sizing:border-box;margin:0;padding:0;}
+    body {
+      font-family:'Cormorant Garamond', serif;
+      background: #f5f5f5;
+      color:#2b2b2b;
+    }
+
+    header {
+      text-align:center;
+      padding:50px 20px 30px;
+      background:#fff;
+      border-bottom:1px solid #ddd;
+    }
+    header img {width:80px;margin-bottom:10px;}
+    header h1 {letter-spacing:2px;font-size:28px;}
+
+    nav {
+      position:sticky;
+      top:0;
+      background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(6px);
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      padding:12px;
+      font-weight:600;
+      border-bottom:1px solid #ddd;
+      z-index:1000;
+    }
+    nav a {
+      color:#2b2b2b;
+      text-decoration:none;
+      transition: color 0.3s;
+    }
+    nav a:hover {color:#555;}
+
+    .content {
+      max-width:1000px;
+      margin:80px auto;
+      padding:0 20px;
+    }
+
+    h2 {text-align:center;margin-bottom:30px;font-size:32px;}
+    .intro {text-align:center;margin-bottom:50px;font-size:18px;}
+    
+    .services {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+      margin-top:40px;
+    }
+    
+    .service-card {
+      background:#fff;
+      padding:35px;
+      border-radius:10px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.08);
+      transition:transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .service-card:hover {
+      transform:translateY(-5px);
+      box-shadow:0 8px 25px rgba(0,0,0,0.12);
+    }
+    
+    .service-card h3 {
+      margin-bottom:15px;
+      font-size:22px;
+      color:#2b2b2b;
+    }
+    
+    .service-card p {
+      line-height:1.7;
+      font-size:16px;
+    }
+    
+    footer {
+      text-align:center;
+      padding:40px 20px;
+      background:rgba(255,255,255,0.95);
+      font-size:14px;
+      margin-top:80px;
+      border-top:1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html"><img src="logo-stylebud.png" alt="Style logo" /></a>
+    <h1>STYLE</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Головна</a>
+    <a href="about.html">Про нас</a>
+    <a href="services.html">Послуги</a>
+    <a href="calculator.html">Калькулятор</a>
+    <a href="index.html#contact">Контакти</a>
+  </nav>
+
+  <div class="content">
+    <h2>Що ми робимо</h2>
+    <p class="intro">
+      Ми беремо на себе весь процес — від проєкту до ключів у руки.
+    </p>
+    
+    <div class="services">
+      <div class="service-card">
+        <h3>🏗️ Будівництво</h3>
+        <p>Повний цикл будівельних робіт з дотриманням стандартів якості та строків. Використовуємо тільки перевірені матеріали та працюємо з досвідченими бригадами.</p>
+      </div>
+      
+      <div class="service-card">
+        <h3>📄 Документи</h3>
+        <p>Оформлення всіх дозволів, право власності, акти введення в експлуатацію. Повний юридичний супровід від початку до отримання всіх документів.</p>
+      </div>
+      
+      <div class="service-card">
+        <h3>🔌 Комунікації</h3>
+        <p>Підключення світла, води, газу, каналізації. Все під ключ. Робимо проєкти, узгоджуємо з постачальниками, виконуємо роботи та здаємо в експлуатацію.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Style. Усі права захищені.</p>
+  </footer>
+
+</body>
+</html>
