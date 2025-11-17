@@ -224,6 +224,55 @@
     footer a:hover {
       text-decoration:underline;
     }
+    
+    .contact-container {
+      display:flex;
+      justify-content:center;
+      gap:40px;
+      flex-wrap:wrap;
+      margin-top:40px;
+    }
+    
+    .contact-card {
+      background:#fff;
+      padding:30px 40px;
+      border-radius:12px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.08);
+      transition:transform 0.3s, box-shadow 0.3s;
+      text-align:center;
+      min-width:250px;
+    }
+    
+    .contact-card:hover {
+      transform:translateY(-5px);
+      box-shadow:0 8px 25px rgba(0,0,0,0.12);
+    }
+    
+    .contact-icon {
+      font-size:48px;
+      margin-bottom:15px;
+      display:block;
+    }
+    
+    .contact-card a {
+      color:#2b2b2b;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:600;
+      transition:color 0.3s;
+    }
+    
+    .contact-card a:hover {
+      color:#555;
+    }
+    
+    .contact-label {
+      font-size:14px;
+      color:#999;
+      margin-bottom:8px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
 
     @keyframes fadeIn {
       from {opacity:0;transform:translateY(-30px);}
@@ -357,10 +406,18 @@
 
   <section id="contact">
     <h2>Контакти</h2>
-    <p style="text-align:center;">
-      📞 <a href="tel:+380958221664">+38 095 822 1664</a><br/>
-      ✉️ <a href="mailto:info@stylebud.com.ua">info@stylebud.com.ua</a>
-    </p>
+    <div class="contact-container">
+      <div class="contact-card">
+        <span class="contact-icon">📞</span>
+        <div class="contact-label">Телефон</div>
+        <a href="tel:+380958221664">+38 095 822 1664</a>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-label">Email</div>
+        <a href="mailto:info@stylebud.com.ua">info@stylebud.com.ua</a>
+      </div>
+    </div>
   </section>
 
   <!-- Лайтбокс -->
