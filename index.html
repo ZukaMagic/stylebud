@@ -17,24 +17,13 @@
 
     header {
       text-align:center;
-      padding:40px 20px 30px;
+      padding:67px 45px 45px;
       animation: fadeIn 1.5s ease-out;
       background:#d9d9d9 url('concrete-texture.jpg?v=3') center/cover;
       border-bottom:none;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
     }
     header h1 {letter-spacing:2px;font-size:42px;color:#2b2b2b;margin-bottom:5px;display:none;}
-    header img {
-      max-width:300px;
-      width:100%;
-      height:auto;
-      margin-bottom:20px;
-      object-fit:contain;
-    }
-    header p {font-size:24px;color:#4a4a4a;margin-top:0;}
+    header p {font-size:24px;color:#4a4a4a;}
 
     nav {
       position:sticky;
@@ -325,10 +314,7 @@
     }
     
     @media (max-width: 768px) {
-      header {padding:30px 15px 20px;}
-      header img {max-width:200px;}
       header h1 {font-size:24px;}
-      header p {font-size:18px;}
       nav {gap:15px;font-size:14px;}
       section {margin:40px auto;}
       .gallery {grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
@@ -343,7 +329,6 @@
 
   <header>
     <h1>STYLE</h1>
-    <img src="logo-stylebud.png?v=4" alt="Style Logo" />
     <p>Будуємо стильні будинки</p>
   </header>
 
