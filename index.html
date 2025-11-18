@@ -22,7 +22,7 @@
       background:#d9d9d9 url('concrete-texture.jpg') center/cover;
       border-bottom:none;
     }
-    header img {width:120px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;}
+    header img {width:240px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;}
     header h1 {letter-spacing:2px;font-size:36px;color:#2b2b2b;}
     header p {font-size:18px;color:#4a4a4a;}
 
@@ -318,13 +318,13 @@
     }
     
     .preloader-logo {
-      width:300px;
-      max-height:200px;
+      width:600px;
+      max-height:400px;
       object-fit:contain;
     }
     
     .loading-bar {
-      width:300px;
+      width:600px;
       height:3px;
       background:#e8e8e8;
       border-radius:2px;
@@ -354,11 +354,12 @@
     
     @media (max-width: 768px) {
       header h1 {font-size:28px;}
+      header img {width:160px;}
       nav {gap:15px;font-size:14px;}
       section {margin:40px auto;}
       .gallery {grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
-      .preloader-logo {width:200px;max-height:150px;}
-      .loading-bar {width:200px;}
+      .preloader-logo {width:400px;max-height:300px;}
+      .loading-bar {width:400px;}
     }
   </style>
 </head>
