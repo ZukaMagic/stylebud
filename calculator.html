@@ -16,7 +16,7 @@
 
     header {
       text-align:center;
-      padding:25px 20px 20px;
+      padding:20px 20px 16px;
       background:#d9d9d9 url('concrete-texture.jpg?v=3') center/cover;
       border-bottom:none;
       position:relative;
@@ -36,8 +36,9 @@
       z-index:0;
       filter:blur(60px) brightness(1.1);
     }
-    header img {width:100px;margin-bottom:8px;position:relative;z-index:1;}
-    header h1 {letter-spacing:2px;font-size:24px;color:#2b2b2b;position:relative;z-index:1;}
+    header img {width:80px;margin-bottom:6px;position:relative;z-index:1;transition:transform 0.3s ease;}
+    header img:hover {transform:scale(1.05);}
+    header h1 {letter-spacing:2px;font-size:19px;color:#2b2b2b;position:relative;z-index:1;}
 
     nav {
       position:sticky;

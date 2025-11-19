@@ -16,14 +16,186 @@
     }
 
     header {
+      position: relative;
       text-align:center;
-      padding:100px 45px 45px;
+      padding:80px 20px 48px;
       animation: fadeIn 1.5s ease-out;
       background:#d9d9d9 url('header-background.jpg?v=2') center/cover;
       border-bottom:none;
+      overflow: hidden;
     }
-    header h1 {letter-spacing:2px;font-size:42px;color:#2b2b2b;margin-bottom:5px;display:none;}
-    header p {font-size:24px;color:#4a4a4a;}
+    
+    /* Динамічний градієнт оверлей */
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, 
+        rgba(20,20,20,0.85) 0%, 
+        rgba(43,43,43,0.7) 30%,
+        rgba(60,60,60,0.6) 60%,
+        rgba(43,43,43,0.75) 100%);
+      animation: gradientFlow 12s ease infinite;
+      z-index: 1;
+    }
+    
+    /* Світлові хвилі */
+    header::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveGrid 20s linear infinite;
+      z-index: 2;
+    }
+    
+    header > * {
+      position: relative;
+      z-index: 3;
+    }
+    
+    header h1 {
+      letter-spacing:5px;
+      font-size:36px;
+      color:#fff;
+      margin-bottom:8px;
+      display:block !important;
+      font-weight:600;
+      text-shadow: 0 0 40px rgba(255,255,255,0.3), 0 6px 30px rgba(0,0,0,0.4);
+      animation: glowPulse 3s ease-in-out infinite, slideDown 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      background: linear-gradient(to right, #fff 0%, #e0e0e0 50%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200% auto;
+      animation: glowPulse 3s ease-in-out infinite, slideDown 1.5s cubic-bezier(0.34, 1.56, 0.64, 1), shimmer 4s linear infinite;
+    }
+    
+    header p {
+      font-size:11px;
+      color:#f0f0f0;
+      max-width: 850px;
+      margin: 0 auto;
+      line-height: 1.7;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+      animation: fadeInSlow 2s ease-out 0.3s backwards;
+      font-weight: 400;
+    }
+    
+    /* Декоративні елементи */
+    .header-line {
+      position: relative;
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+      margin: 14px auto 12px;
+      border-radius: 2px;
+      animation: expandLine 2s ease-out 0.5s backwards;
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
+    
+    .header-line::before,
+    .header-line::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 0 15px rgba(255,255,255,0.8);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    .header-line::before { left: -8px; }
+    .header-line::after { right: -8px; animation-delay: 1s; }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    @keyframes fadeInSlow {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+        filter: blur(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+    
+    @keyframes expandLine {
+      from {
+        width: 0;
+        opacity: 0;
+      }
+      to {
+        width: 48px;
+        opacity: 1;
+      }
+    }
+    
+    @keyframes glowPulse {
+      0%, 100% {
+        text-shadow: 0 0 40px rgba(255,255,255,0.3), 0 6px 30px rgba(0,0,0,0.4);
+      }
+      50% {
+        text-shadow: 0 0 60px rgba(255,255,255,0.5), 0 6px 30px rgba(0,0,0,0.4);
+      }
+    }
+    
+    @keyframes shimmer {
+      to {
+        background-position: 200% center;
+      }
+    }
+    
+    @keyframes gradientFlow {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+    
+    @keyframes moveGrid {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      100% {
+        transform: translate(50px, 50px) rotate(360deg);
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-50%) scale(1.3);
+        opacity: 0.7;
+      }
+    }
 
     nav {
       position:sticky;
@@ -74,8 +246,33 @@
       cursor:pointer;
     }
     .gallery img:hover {
-      transform:scale(1.03);
-      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+      transform:scale(1.05) translateY(-5px);
+      box-shadow:0 12px 30px rgba(0,0,0,0.2);
+    }
+    
+    /* Анімація появи карток */
+    .gallery img {
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+    
+    .gallery img:nth-child(1) { animation-delay: 0.1s; }
+    .gallery img:nth-child(2) { animation-delay: 0.2s; }
+    .gallery img:nth-child(3) { animation-delay: 0.3s; }
+    .gallery img:nth-child(4) { animation-delay: 0.4s; }
+    .gallery img:nth-child(5) { animation-delay: 0.5s; }
+    .gallery img:nth-child(6) { animation-delay: 0.6s; }
+    .gallery img:nth-child(7) { animation-delay: 0.7s; }
+    .gallery img:nth-child(8) { animation-delay: 0.8s; }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     
     /* Лайтбокс */
@@ -253,8 +450,26 @@
     }
     
     .contact-card:hover {
-      transform:translateY(-5px);
-      box-shadow:0 8px 25px rgba(0,0,0,0.12);
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 12px 35px rgba(0,0,0,0.15);
+    }
+    
+    .contact-card {
+      animation: fadeInScale 0.6s ease-out backwards;
+    }
+    
+    .contact-card:nth-child(1) { animation-delay: 0.2s; }
+    .contact-card:nth-child(2) { animation-delay: 0.3s; }
+    
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
     
     .contact-icon {
@@ -314,7 +529,10 @@
     }
     
     @media (max-width: 768px) {
-      header h1 {font-size:24px;}
+      header {padding: 56px 20px 32px;}
+      header h1 {font-size:28px;letter-spacing:3px;}
+      header p {font-size:10px;}
+      .header-line {width: 32px;}
       nav {gap:15px;font-size:14px;}
       section {margin:40px auto;}
       .gallery {grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
@@ -330,6 +548,8 @@
 
   <header>
     <h1>STYLE</h1>
+    <div class="header-line"></div>
+    <p>Будуємо стильні будинки вашої мрії</p>
   </header>
 
   <nav>
