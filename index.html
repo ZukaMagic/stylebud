@@ -16,49 +16,11 @@
     }
 
     header {
-      position: relative;
       text-align:center;
-      padding:80px 20px 48px;
-      animation: fadeIn 1.5s ease-out;
-      background:#d9d9d9 url('header-reference.jpg') center/cover;
+      padding:140px 20px 108px;
+      background: url('header-reference.png') center/cover;
       border-bottom:none;
-      overflow: hidden;
-    }
-    
-    /* Динамічний градієнт оверлей */
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, 
-        rgba(20,20,20,0.85) 0%, 
-        rgba(43,43,43,0.7) 30%,
-        rgba(60,60,60,0.6) 60%,
-        rgba(43,43,43,0.75) 100%);
-      animation: gradientFlow 12s ease infinite;
-      z-index: 1;
-    }
-    
-    /* Світлові хвилі */
-    header::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: moveGrid 20s linear infinite;
-      z-index: 2;
-    }
-    
-    header > * {
-      position: relative;
-      z-index: 3;
+      min-height: 200px;
     }
     
     header h1 {
@@ -66,16 +28,8 @@
       font-size:36px;
       color:#fff;
       margin-bottom:8px;
-      display:block !important;
       font-weight:600;
-      text-shadow: 0 0 40px rgba(255,255,255,0.3), 0 6px 30px rgba(0,0,0,0.4);
-      animation: glowPulse 3s ease-in-out infinite, slideDown 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      background: linear-gradient(to right, #fff 0%, #e0e0e0 50%, #fff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      background-size: 200% auto;
-      animation: glowPulse 3s ease-in-out infinite, slideDown 1.5s cubic-bezier(0.34, 1.56, 0.64, 1), shimmer 4s linear infinite;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     
     header p {
@@ -84,39 +38,17 @@
       max-width: 850px;
       margin: 0 auto;
       line-height: 1.7;
-      text-shadow: 0 3px 15px rgba(0,0,0,0.4);
-      animation: fadeInSlow 2s ease-out 0.3s backwards;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
       font-weight: 400;
     }
     
-    /* Декоративні елементи */
     .header-line {
-      position: relative;
       width: 48px;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+      background: rgba(255,255,255,0.8);
       margin: 14px auto 12px;
       border-radius: 2px;
-      animation: expandLine 2s ease-out 0.5s backwards;
-      box-shadow: 0 0 20px rgba(255,255,255,0.5);
     }
-    
-    .header-line::before,
-    .header-line::after {
-      content: '';
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: #fff;
-      border-radius: 50%;
-      top: 50%;
-      transform: translateY(-50%);
-      box-shadow: 0 0 15px rgba(255,255,255,0.8);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    
-    .header-line::before { left: -8px; }
-    .header-line::after { right: -8px; animation-delay: 1s; }
     
     @keyframes slideDown {
       from {
@@ -510,13 +442,32 @@
       left:0;
       width:100%;
       height:100%;
-      background:#d9d9d9 url('concrete-texture.jpg?v=3') center/cover;
+      background:#d9d9d9 url('concrete-texture.png') center/cover;
       display:flex;
       justify-content:center;
       align-items:center;
       z-index:9999;
       opacity:1;
       transition:opacity 0.8s ease-out, visibility 0.8s ease-out;
+    }
+    
+    .preloader-content {
+      text-align: center;
+      color: #fff;
+    }
+    
+    .preloader-logo {
+      font-size: 72px;
+      font-weight: 600;
+      letter-spacing: 8px;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    
+    .preloader-text {
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     
     .preloader.hidden {
@@ -547,9 +498,6 @@
   </div>
 
   <header>
-    <h1>STYLE</h1>
-    <div class="header-line"></div>
-    <p>Будуємо стильні будинки вашої мрії</p>
   </header>
 
   <nav>

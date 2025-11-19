@@ -15,46 +15,11 @@
     }
 
     header {
-      position: relative;
       text-align:center;
-      padding:80px 20px 48px;
-      background:#d9d9d9 url('header-reference.jpg') center/cover;
+      padding:140px 20px 108px;
+      background: url('header-reference.png') center/cover;
       border-bottom:none;
-      overflow: hidden;
-    }
-    
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, 
-        rgba(20,20,20,0.85) 0%, 
-        rgba(43,43,43,0.7) 30%,
-        rgba(60,60,60,0.6) 60%,
-        rgba(43,43,43,0.75) 100%);
-      animation: gradientFlow 12s ease infinite;
-      z-index: 1;
-    }
-    
-    header::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: moveGrid 20s linear infinite;
-      z-index: 2;
-    }
-    
-    header > * {
-      position: relative;
-      z-index: 3;
+      min-height: 200px;
     }
     
     header h1 {
@@ -63,15 +28,7 @@
       color:#fff;
       font-weight:600;
       margin-bottom:15px;
-      text-shadow: 0 0 40px rgba(255,255,255,0.4), 
-                   0 0 80px rgba(255,255,255,0.2),
-                   0 4px 30px rgba(0,0,0,0.5);
-      background: linear-gradient(to right, #fff 0%, #e0e0e0 50%, #fff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      background-size: 200% auto;
-      animation: glowPulse 3s ease-in-out infinite, slideDown 1.5s cubic-bezier(0.34, 1.56, 0.64, 1), shimmer 4s linear infinite;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     
     header h1 a {
@@ -252,7 +209,6 @@
 <body>
 
   <header>
-    <h1><a href="index.html">STYLE</a></h1>
   </header>
 
   <nav>
