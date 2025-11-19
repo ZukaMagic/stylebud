@@ -266,15 +266,15 @@
       background:rgba(255,255,255,0.2);
       border:none;
       color:#fff;
-      font-size:32px;
+      font-size:20px;
       cursor:pointer;
-      padding:15px;
+      padding:8px;
       transition:all 0.3s ease;
       border-radius:50%;
       font-weight:400;
       backdrop-filter:blur(10px);
-      width:60px;
-      height:60px;
+      width:40px;
+      height:40px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -572,11 +572,11 @@
 
   <!-- Лайтбокс -->
   <div class="lightbox" id="lightbox">
+    <button class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">&#10094;</button>
+    <button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">&#10095;</button>
     <div class="lightbox-content">
       <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
       <img id="lightbox-img" src="" alt="Перегляд зображення" />
-      <button class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">&#10094;</button>
-      <button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">&#10095;</button>
     </div>
   </div>
 
@@ -590,11 +590,11 @@
       const preloader = document.getElementById('preloader');
       const body = document.body;
       
-      // Показуємо прелоадер мінімум 2.5 секунди
+      // Показуємо прелоадер мінімум 2 секунди
       setTimeout(function() {
         preloader.classList.add('hidden');
         body.classList.remove('loading');
-      }, 2500);
+      }, 2000);
     });
     
     // Плавна поява секцій при скролі
@@ -666,10 +666,25 @@
       document.getElementById('lightbox-img').alt = img.alt;
     }
     
-    // Закриття лайтбоксу при кліку на фон
+    // Закриття лайтбоксу при кліку на фон або перемикання фото по кліку на зображення
     document.getElementById('lightbox').addEventListener('click', function(e) {
       if (e.target === this) {
         closeLightbox();
+      }
+    });
+    
+    // Перемикання фото при кліку на зображення (ліва/права половина)
+    document.getElementById('lightbox-img').addEventListener('click', function(e) {
+      const img = e.target;
+      const rect = img.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const imgWidth = rect.width;
+      
+      // Якщо клік в лівій половині - назад, в правій - вперед
+      if (clickX < imgWidth / 2) {
+        changeLightboxImage(-1);
+      } else {
+        changeLightboxImage(1);
       }
     });
     
